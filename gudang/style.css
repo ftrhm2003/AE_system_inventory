@@ -1,0 +1,142 @@
+/*body {
+  font-family: sans-serif;
+  background: #e0e0e0;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.table-container {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.table-row {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 15px;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header {
+  font-weight: bold;
+  background: #f5f5f5;
+}
+
+.footer {
+  background: #f5f5f5;
+  justify-content: flex-start;
+}
+
+.col {
+  flex: 1;
+}
+
+.no {
+  flex: 0.5;
+  text-align: center;
+}
+
+.total {
+  text-align: center;
+}
+
+.action {
+  text-align: right;
+  flex: 0.5;
+}
+
+.delete {
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.total-footer {
+  flex: 2;
+  padding-left: 5px;
+}
+*/
+
+body {
+  font-family: sans-serif;
+  background: #f0f0f0;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+table.table-container {
+  border-collapse: separate;   /* penting agar border-spacing bisa bekerja */
+  border-spacing: 0 10px;      /* jarak antar baris: 10px vertikal */
+  width: 100%;
+  background-color: transparent;
+}
+
+.table-row {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.table-row.header {
+  background: #e8e8e8;
+  font-weight: bold;
+}
+
+.table-row th,
+.table-row td {
+  padding: 12px 16px;
+  text-align: center;
+}
+
+.col.action span {
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+
+/* Bungkus utama agar semua di tengah */
+.wrapper {
+  width: 80%;
+  max-width: none;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Judul */
+.judul {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+
+.quantity-control {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .quantity-control button {
+      width: 30px;
+      height: 30px;
+      font-size: 18px;
+      border: none;
+      background-color: #eee;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .quantity-control span {
+      width: 20px;
+      text-align: center;
+      display: inline-block;
+    }
