@@ -1,10 +1,9 @@
 <?php 
 
-// show data
+date_default_timezone_set('Asia/Jakarta');
+
 $conn = mysqli_connect("localhost", "root", "", "ae_database");
 
-
-// fungction untuk data produksi
 
 function query_produksi($query_produksi) {
     global $conn;
@@ -32,31 +31,68 @@ function tambah_produksi($data_produksi) {
 
 function hapus_produksi($id) {
     global $conn;
+
+    // Ambil data lama sebelum dihapus
+    $res = mysqli_query($conn, "SELECT * FROM gudang2 WHERE id = $id LIMIT 1");
+    $data_lama = mysqli_fetch_assoc($res);
+
+    if ($data_lama) {
+        $produk = $data_lama['produk'];
+        $jumlah = $data_lama['jumlah'];
+        $waktu  = date('Y-m-d H:i:s');
+
+        // Simpan log ke log_gudang
+        $sql_log = "INSERT INTO log_gudang2 (aksi, produk, jumlah, waktu, data_lama, data_baru)
+                    VALUES ('HAPUS', '$produk', '$jumlah', '$waktu',
+                            'Produk: {$data_lama['produk']} | Jumlah: {$data_lama['jumlah']} | Waktu: {$data_lama['waktu']}',
+                            '-')";
+        mysqli_query($conn, $sql_log);
+    }
+
+    // Hapus data dari gudang
     mysqli_query($conn, "DELETE FROM gudang2 WHERE id = $id");
 
     return mysqli_affected_rows($conn);
 }
 
 
+
 function ubah_produksi($data_produksi) {
     global $conn;
 
-    $id = $data_produksi["id"];
+    $id     = (int)$data_produksi["id"];
     $produk = htmlspecialchars($data_produksi["produk"]);
-    $jumlah= htmlspecialchars($data_produksi["jumlah"]);
-    $waktu = htmlspecialchars($data_produksi["waktu"]);
+    $jumlah = htmlspecialchars($data_produksi["jumlah"]);
+    $waktu  = htmlspecialchars($data_produksi["waktu"]);
 
+    // 1️⃣ Ambil data lama
+    $res_lama = mysqli_query($conn, "SELECT * FROM gudang2 WHERE id = $id LIMIT 1");
+    $row_lama = mysqli_fetch_assoc($res_lama);
+    $data_lama_text = "Produk: {$row_lama['produk']} | Jumlah: {$row_lama['jumlah']} | Waktu: {$row_lama['waktu']}";
 
-    $query_produksi = "UPDATE gudang2 Set
-             produk = '$produk',
-             jumlah = '$jumlah',
-             waktu = '$waktu'
-             WHERE id = $id
-             ";
+    // 2️⃣ Update data
+    $query_produksi = "UPDATE gudang2 SET
+        produk = '$produk',
+        jumlah = '$jumlah',
+        waktu  = '$waktu'
+        WHERE id = $id
+    ";
     mysqli_query($conn, $query_produksi);
+
+    // 3️⃣ Ambil data baru
+    $res_baru = mysqli_query($conn, "SELECT * FROM gudang2 WHERE id = $id LIMIT 1");
+    $row_baru = mysqli_fetch_assoc($res_baru);
+    $data_baru_text = "Produk: {$row_baru['produk']} | Jumlah: {$row_baru['jumlah']} | Waktu: {$row_baru['waktu']}";
+
+    // 4️⃣ Catat log UBAH
+    $sql_log = "INSERT INTO log_gudang2 (aksi, produk, jumlah, waktu, data_lama, data_baru)
+                VALUES ('UBAH', '{$row_baru['produk']}', '{$row_baru['jumlah']}', '{$row_baru['waktu']}', 
+                        '$data_lama_text', '$data_baru_text')";
+    mysqli_query($conn, $sql_log);
 
     return mysqli_affected_rows($conn);
 }
+
 
 function cari_produksi($src_produksi){
     $query_produksi = "SELECT * FROM gudang2 
@@ -127,7 +163,7 @@ function tambah_jumlah($data) {
     global $conn;
 
     $produk = htmlspecialchars($data["produk"]);
-    $jumlah = abs((int)$data["jumlah"]); // ubah jadi positif
+    $jumlah = abs((int)$data["jumlah"]); 
     $waktu = htmlspecialchars($data["waktu"]);
 
 
@@ -159,7 +195,7 @@ function cari_total_per_produk($keyword) {
 
         $query_keluar = mysqli_query($conn, "
             SELECT SUM(ABS(jumlah)) AS jumlah_keluar 
-            FROM gudang2 
+            FROM gudang2     
             WHERE produk = '$produk' AND jumlah < 0
         ");
         $keluar = mysqli_fetch_assoc($query_keluar);

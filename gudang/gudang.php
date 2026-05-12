@@ -1,39 +1,120 @@
- <!DOCTYPE html>
- <html>
- <head>
- 	<meta charset="utf-8">
- 	<meta name="viewport" content="width=device-width, initial-scale=1">
- 	<title>ae system</title>
- 	<link rel="stylesheet" type="text/css" href="style.css">
- </head>
- <body>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AE Gudang</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffffff; /* putih */
+      color: #333;
+    }
 
+    .wrapper {
+      max-width: 900px;
+      margin: 40px auto;
+      text-align: center;
+    }
+
+    h1.judul {
+      font-size: 2rem;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    /* Tombol kembali */
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 30px;
+      padding: 10px 20px;
+      background: #3498db;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    .back-btn:hover {
+      background: #2980b9;
+    }
+
+    .menu-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .menu-card {
+      background: #fdfdfd;
+      padding: 40px 20px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    .menu-card h2 {
+      font-size: 1.2rem;
+      margin-top: 15px;
+      color: #34495e;
+    }
+
+    /* Ikon lingkaran */
+    .icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    .singkong { background: #27ae60; }
+    .bawang { background: #e67e22; }
+    .luar { background: #8e44ad; }
+  </style>
+</head>
+<body>
 
 <div class="wrapper">
-<h1 class="judul">AE Gudang</h1>
+  <h1 class="judul">AE Gudang</h1>
 
-<table class="table-container">
-	<tr class="table-row header">
-		<th class="col total"><a href="index.php">Kembali</a></th>
-	</tr>
+  <a href="index.php" class="back-btn">⬅ Kembali</a>
 
-</table>
+  <div class="menu-container">
+    <a href="singkong_produksi.php" class="menu-card">
+      <div class="icon singkong">🌿</div>
+      <h2>Produk Singkong</h2>
+    </a>
 
-<table class="table-container">
-	<tr class="table-row header">
-		<th class="col no"></th>
-		<th class="col total"><a href="singkong_produksi.php">Produk Singkong</a></th>
-		<th class="col total"><a href="bawang_produksi.php">Produk Bawang</a></th>
-		<th class="col total"><a href="luar_produksi.php">Produk Luar</a></th>
-		<th class="col action"></th>
-	</tr>
+    <a href="bawang_produksi.php" class="menu-card">
+      <div class="icon bawang">🧅</div>
+      <h2>Produk Bawang</h2>
+    </a>
 
-</table>
-
+    <a href="luar_produksi.php" class="menu-card">
+      <div class="icon luar">📦</div>
+      <h2>Produk Luar</h2>
+    </a>
+  </div>
 </div>
+
 </body>
 </html>
-
-
-
-
