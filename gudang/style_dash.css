@@ -1,0 +1,318 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-main-color: rgb(255, 255, 255);
+
+}
+
+body {
+    background-color: var(--bg-main-color);
+    color: black;
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.all-dash {
+    display: flex;
+    min-height: 100vh;
+}
+
+.out-dash {
+    width: 25%;
+    display: flex;
+    transition: width 0.3s ease;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    align-self: flex-start;
+}
+
+.out-dash.closed {
+    width: auto;
+}
+
+.out-dash.closed .dashboard {
+    display: none;
+}
+
+.dashboard {
+    width: 90%;
+    height: 100vh;
+    border: 1px solid #CDD2D6;
+    border-top: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+}
+
+.logo-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    width: 90%;
+}
+
+.logo-button:hover {
+    background: #CDD2D6;
+    border-radius: 10px;
+}
+
+.logo {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.logo img {
+    width: 150px;
+    height: 75px;
+}
+
+.account {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.border-button {
+    width: 90%;
+    height: auto;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+}
+
+.in-border {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+}
+
+.profile img {
+    width: 40px;    
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    padding: 5px;
+    background-color: #00B8D9;
+    border: none;
+}
+
+.name-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start; 
+    gap: 5px; 
+}
+
+.name-profile p {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.name-profile span {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: gray;
+}
+
+.menu {
+    width: 100%;
+    padding-left: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu p {
+    font-size: 14px;
+    font-weight: 600;
+    color: gray;
+}
+
+.in-menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    width: 95%;
+    height: auto;
+    background: none;
+    border: none;
+}
+
+.in-menu:hover {
+    background-color: #E8F5EC;
+    border-radius: 8px;
+}
+
+.in-menu:hover p {
+    color: #22C55E;
+}
+
+.in-menu:hover img {
+    filter: brightness(0) saturate(100%) invert(43%) sepia(70%) saturate(1777%) hue-rotate(86deg) brightness(94%) contrast(90%);
+}
+
+.in-menu a {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;  
+    width: 100%;
+    height: auto;
+    text-decoration: none;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 5px;
+}
+
+.in-menu img {
+    width: 20px;
+    height: 20px;
+}
+
+.in-menu p {
+    font-size: 16px;
+    font-weight: 500;
+    color: gray;
+    line-height: 1;
+}
+
+.button-dash {
+    width: 40px;    
+    height: 40px; 
+    border: 2px solid #00B8D9;
+    border-radius: 50%;
+    background: #00B8D9;
+    z-index: 2;
+    margin-left: -20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.button-dash:hover {
+   background-color: #0099bb;
+   border-color: #0099bb;
+   box-shadow: 0 4px 12px rgba(0, 184, 217, 0.5);
+   transform: scale(1.1);
+}
+
+.out-dash.closed .button-dash {
+    margin-top: 50px;
+}
+
+.button-dash img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    transition: margin-left 0.3s ease;
+}
+
+.out-dash.closed .button-dash img {
+    margin-right: 15px;
+}
+
+.top-all-dash {
+    display: flex;
+    margin-top: 0;
+    position: relative;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    /* padding-top: 70px; */
+}
+
+.top-dash {
+    display: flex;
+    width: 100%;
+    height: 60px; /* 3. BERIKAN TINGGI PASTI agar kalkulasinya akurat */
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    left: 25%;
+    z-index: 20;
+    padding: 0 20px; /* 4. UBAH PADDING ATAS-BAWAH MENJADI 0 (gunakan align-items nanti) */
+    align-items: center; /* Menjaga tombol tetap di tengah secara vertikal */
+    background-color: var(--bg-main-color);
+}
+
+.search-button {
+    width: 30px;
+    height: 30px;   
+    border: none;
+    background: none; 
+    cursor: pointer;
+}
+
+.search-button img {
+    width: 100%;
+    height: 100%;
+}
+
+.search-button:hover img {
+    filter: brightness(0) saturate(100%) invert(43%) sepia(70%) saturate(1777%) hue-rotate(86deg) brightness(94%) contrast(90%);
+}
+
+.account-button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: #00B8D9;
+    border-radius: 50%;
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+.account-button img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    padding: 5px;
+}
+
+.main-dashboard {
+    width: 100%;
+    min-height: calc(100vh - 60px); /* 6. Sesuaikan pengurang vh dengan tinggi bar hijau */
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+.in-main-dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+    max-width: 900px;
+    margin: 0 auto;
+}

@@ -24,9 +24,11 @@ function tambah_produksi($data_produksi) {
 
 	$query_produksi = "INSERT INTO gudang values ('', '$produk', '$jumlah', '$waktu')";
 
-	mysqli_query($conn, $query_produksi);
-
-	return mysqli_affected_rows($conn);
+    $res = mysqli_query($conn, $query_produksi);
+    if ($res) {
+        return (int) mysqli_insert_id($conn);
+    }
+    return 0;
 }
 
 function hapus_produksi($id) {
@@ -99,7 +101,7 @@ function cari_produksi($src_produksi){
         WHERE produk LIKE '%$src_produksi%' 
            OR jumlah LIKE '%$src_produksi%'  
            OR waktu LIKE '%$src_produksi%'
-        ORDER BY waktu DESC
+        ORDER BY waktu ASC
     ";
     return query_produksi($query_produksi);
 }
@@ -169,9 +171,12 @@ function tambah_jumlah($data) {
 
     $query = "INSERT INTO gudang (produk, jumlah, waktu) 
               VALUES ('$produk', '$jumlah', '$waktu')";
-    
-    mysqli_query($conn, $query);
-    return mysqli_affected_rows($conn);
+
+    $res = mysqli_query($conn, $query);
+    if ($res) {
+        return (int) mysqli_insert_id($conn);
+    }
+    return 0;
 }
 
 
